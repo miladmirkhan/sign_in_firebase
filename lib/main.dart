@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -148,14 +149,15 @@ TextEditingController passController=TextEditingController();
                         Container(
                           height: 50,
                           width: 150,
-                          child: ElevatedButton(onPressed: (){
+                          child: ElevatedButton(onPressed: ()async{
                           
                               final form=formKey.currentState!;
                                     final isValid=form.validate();//cheeks if our form validated
                                               
                                         if(isValid){
-                                    
-                                   
+                                             
+                                            await FirebaseAuth.instance.signInWithEmailAndPassword(email: idController.text, password: passController.text);
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SignIn()));
                                     }else{
                                  
                                           }
@@ -171,6 +173,20 @@ TextEditingController passController=TextEditingController();
             ),
         ),
       ) ,
+    );
+  }
+}
+
+class SignIn extends StatelessWidget {
+  const SignIn({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sign In Seccess"),
+      ),
+      
     );
   }
 }
