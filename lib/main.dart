@@ -193,7 +193,8 @@ class SignIn extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ElevatedButton(onPressed: ()async{
-                await FirebaseAuth.instance.signOut();
+                await FirebaseAuth.instance.signOut().then((value) => print("Sign out"));
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>mainScreen()));
               }, child: Text("logOut"))
             ],
           ),
