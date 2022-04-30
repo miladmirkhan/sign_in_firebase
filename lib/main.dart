@@ -187,6 +187,17 @@ class SignIn extends StatelessWidget {
         title: Text("Sign In Seccess"),
       ),
       
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ElevatedButton(onPressed: ()async{
+                await FirebaseAuth.instance.signOut();
+              }, child: Text("logOut"))
+            ],
+          ),
+        )
     );
   }
 }
